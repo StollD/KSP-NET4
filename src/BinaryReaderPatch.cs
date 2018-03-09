@@ -2,7 +2,6 @@
 using System.IO;
 using System.Reflection;
 using System.Text;
-using FinePrint;
 using JetBrains.Annotations;
 using UnityEngine;
 
@@ -51,9 +50,39 @@ namespace KSPNET4
                 return -1;
             
             Int64 pos = BaseStream.Position;
-            Int32 ret = ReadChar();
+            Int32 ret = InternalReadChar();
             BaseStream.Position = pos;
             return ret;
+        }
+
+        private Int32 InternalReadChar()
+        {
+            Int32 num1 = 0;
+            Int64 num2 = 0;
+            if (BaseStream.CanSeek)
+                num2 = BaseStream.Position;
+            Byte[] charBytes = new Byte[128];
+            Char[] singleChar = new Char[1];
+            while (num1 == 0)
+            {
+                Int32 num3 = BaseStream.ReadByte();
+                charBytes[0] = (Byte) num3;
+                if (num3 == -1)
+                    return -1;
+                try
+                {
+                    num1 = Encoding.ASCII.GetChars(charBytes, 0, 1, singleChar, 0);
+                }
+                catch
+                {
+                    if (BaseStream.CanSeek)
+                        BaseStream.Seek(num2 - BaseStream.Position, SeekOrigin.Current);
+                    throw;
+                }
+            }
+            if (num1 == 0)
+                return -1;
+            return singleChar[0];
         }
     }
 }
