@@ -12,6 +12,9 @@ In case you are interested in the technical background, please head over to `TEC
 
 ## License
 KSP-NET4 and KSP-NET4.Patcher is licensed under the MIT License.
+
 Mono is licensed under the MIT License.
+
 Octokit.NET is licensed under the MIT License.
+
 Unity is copyrighted by Unity Technologies.
