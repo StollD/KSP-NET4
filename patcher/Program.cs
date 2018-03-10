@@ -36,6 +36,10 @@ namespace KSPNET4.Patcher
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("ERROR: MacOS is not supported in this version!");
                 Console.ResetColor();
+
+                Console.WriteLine();
+                Console.Write("Press any key to continue...");
+                Console.ReadKey();
                 Environment.Exit(1);
             }
             
@@ -69,6 +73,10 @@ namespace KSPNET4.Patcher
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("ERROR: You need to run KSP-NET4-Patcher from your KSP Installation Directory!");
                 Console.ResetColor();
+
+                Console.WriteLine();
+                Console.Write("Press any key to continue...");
+                Console.ReadKey();
                 Environment.Exit(2);
             }
             
@@ -111,21 +119,13 @@ namespace KSPNET4.Patcher
             }
             
             // Download the required data for this platform
-            String assetURL = "";
+            String assetUrl = current.Assets.First(r =>
+                r.Name.StartsWith("NET4-Patch-" + Environment.OSVersion.Platform.ToString())).BrowserDownloadUrl;
             String filename = Path.GetTempFileName();
-            if (Environment.OSVersion.Platform == PlatformID.Win32NT)
-            {
-                assetURL = current.Assets[2].BrowserDownloadUrl;
-            }
-
-            if (Environment.OSVersion.Platform == PlatformID.Unix)
-            {
-                assetURL = current.Assets[1].BrowserDownloadUrl;
-            }
 
             // Download the file and save it to a temporary location
             Console.WriteLine("Downloading new mono runtime...");
-            await new WebClient().DownloadFileTaskAsync(assetURL, filename);
+            await new WebClient().DownloadFileTaskAsync(assetUrl, filename);
 
             // Copy the Unity Data folders
             if (Environment.OSVersion.Platform == PlatformID.Win32NT)
@@ -169,7 +169,10 @@ namespace KSPNET4.Patcher
             // Download the bugfixing plugin
             Console.WriteLine("Downloading KSP bugfixing plugin...");
             filename = Path.GetTempFileName();
-            await new WebClient().DownloadFileTaskAsync(current.Assets[0].BrowserDownloadUrl, filename);
+            await new WebClient().DownloadFileTaskAsync(
+                current.Assets
+                    .First(r => r.Name.StartsWith("KSP-NET4") && !r.Name.StartsWith("KSP-NET4-Patcher"))
+                    .BrowserDownloadUrl, filename);
             archive = ZipFile.OpenRead(filename);
             foreach (ZipArchiveEntry file in archive.Entries)
             {
