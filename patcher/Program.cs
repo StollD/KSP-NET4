@@ -130,12 +130,19 @@ namespace KSPNET4.Patcher
             // Copy the Unity Data folders
             if (Environment.OSVersion.Platform == PlatformID.Win32NT)
             {
-                Console.WriteLine("Creating KSP_N4");
-                CopyAll("KSP_Data", "KSP_N4_Data");
-                File.Copy("KSP.exe", "KSP_N4.exe");
-                Console.WriteLine("Creating KSP_N4_x64");
-                CopyAll("KSP_x64_Data", "KSP_N4_x64_Data");
-                File.Copy("KSP_x64.exe", "KSP_N4_x64.exe");
+                String dir = Directory.GetCurrentDirectory();
+                if (Directory.Exists(Path.Combine(dir, "KSP_Data")))
+                {
+                    Console.WriteLine("Creating KSP_N4");
+                    CopyAll("KSP_Data", "KSP_N4_Data");
+                    File.Copy("KSP.exe", "KSP_N4.exe");
+                }
+                if (Directory.Exists(Path.Combine(dir, "KSP_x64_Data")))
+                {
+                    Console.WriteLine("Creating KSP_N4_x64");
+                    CopyAll("KSP_x64_Data", "KSP_N4_x64_Data");
+                    File.Copy("KSP_x64.exe", "KSP_N4_x64.exe");
+                }
             }
 
             if (Environment.OSVersion.Platform == PlatformID.Unix)
@@ -257,7 +264,7 @@ namespace KSPNET4.Patcher
             String dir = Directory.GetCurrentDirectory();
             if (Environment.OSVersion.Platform == PlatformID.Win32NT)
             {
-                return Directory.Exists(Path.Combine(dir, "KSP_Data")) &&
+                return Directory.Exists(Path.Combine(dir, "KSP_Data")) ||
                        Directory.Exists(Path.Combine(dir, "KSP_x64_Data"));
             }
 
@@ -274,7 +281,7 @@ namespace KSPNET4.Patcher
             String dir = Directory.GetCurrentDirectory();
             if (Environment.OSVersion.Platform == PlatformID.Win32NT)
             {
-                return Directory.Exists(Path.Combine(dir, "KSP_N4_Data")) &&
+                return Directory.Exists(Path.Combine(dir, "KSP_N4_Data")) ||
                        Directory.Exists(Path.Combine(dir, "KSP_N4_x64_Data"));
             }
 
