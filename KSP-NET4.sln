@@ -2,7 +2,7 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KSP-NET4", "src\KSP-NET4.csproj", "{E3AE62F0-E8CF-4153-916C-305B5187CD2C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KSP-NET4.Patcher", "patcher\KSP-NET4.Patcher.csproj", "{14D2D2C6-F240-4F2A-811D-55FB34090F9F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KSP-NET4.Patcher", "patcher\KSP-NET4-Patcher.csproj", "{14D2D2C6-F240-4F2A-811D-55FB34090F9F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -27,7 +27,7 @@ namespace KSPNET4.Patcher
         /// </summary>
         public static async Task Main(String[] args)
         {
-            Console.WriteLine($"KSP-NET4.Patcher: Version {Version}");
+            Console.WriteLine($"KSP-NET4-Patcher: Version {Version}");
             Console.WriteLine();
             
             // Don't even try to run on MacOS at this time
@@ -48,7 +48,7 @@ namespace KSPNET4.Patcher
             {
 #if !DEBUG
                 Console.ForegroundColor = ConsoleColor.Cyan;
-                Console.WriteLine($"KSP-NET4.Patcher {latest.TagName} is available at https://github.com/{User}/{Repo}/releases/latest");
+                Console.WriteLine($"KSP-NET4-Patcher {latest.TagName} is available at https://github.com/{User}/{Repo}/releases/latest");
                 Console.WriteLine($"You are currently running version {Version}");
                 Console.WriteLine();
                 Console.ResetColor();
@@ -67,7 +67,7 @@ namespace KSPNET4.Patcher
             if (!IsKspDirectory())
             {
                 Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine("ERROR: You need to run KSP-NET4.Patcher from your KSP Installation Directory!");
+                Console.WriteLine("ERROR: You need to run KSP-NET4-Patcher from your KSP Installation Directory!");
                 Console.ResetColor();
                 Environment.Exit(2);
             }
