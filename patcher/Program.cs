@@ -14,7 +14,7 @@ namespace KSPNET4.Patcher
         /// <summary>
         /// The version of the patcher
         /// </summary>
-        public const String Version = "1.4.0-2";
+        public const String Version = "1.4.0-3";
         
         /// <summary>
         /// The repository that we are referencing
