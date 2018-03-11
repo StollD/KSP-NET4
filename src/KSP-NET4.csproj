@@ -34,21 +34,32 @@
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="0Harmony, Version=1.0.9.1, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\deps\0Harmony.dll</HintPath>
+    </Reference>
     <Reference Include="Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
-      <HintPath>..\deps\Assembly-CSharp.dll</HintPath>
+      <HintPath>..\packages\Assembly-CSharp.1.4.0\lib\net35\Assembly-CSharp.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="UnityEngine, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
-      <HintPath>..\deps\UnityEngine.dll</HintPath>
+      <HintPath>..\packages\UnityEngine.1.4.0\lib\net35\UnityEngine.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.UI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\packages\UnityEngine.UI.1.4.0\lib\net35\UnityEngine.UI.dll</HintPath>
       <Private>False</Private>
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BinaryReaderPatch.cs" />
-    <Compile Include="Detourer.cs" />
+    <Compile Include="PeekCharPatch.cs" />
+    <Compile Include="InitHarmony.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="GetTypesPatch.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
